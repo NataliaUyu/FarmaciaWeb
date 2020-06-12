@@ -12,19 +12,20 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
+	<h:form>
 	<p:dataTable emptyMessage="Nenhum registro encontrado!" value="#{MBFornecedores.itens}"  
 	var="item" paginator="true" rows="8" >
-		<p:column headerText="Código">
+		<p:column headerText="Código" sortBy="#{item.codigo}" filterBy="#{item.codigo}">
 <h:outputText value="#{item.codigo}" />
 		</p:column>
 
-		<p:column headerText="Descrição">
+		<p:column headerText="Descrição"  sortBy="#{item.descricao}" filterBy="#{item.descricao}">
 <h:outputText value="#{item.descricao}"  />
 		</p:column>
 
 
 	</p:dataTable>
-	
+	</h:form>
 	</ui:define>
 	
 </ui:composition>
