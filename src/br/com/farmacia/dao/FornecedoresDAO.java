@@ -124,18 +124,18 @@ public class FornecedoresDAO {
 	public static void main(String[] args) {
 		//salvar
 	
-//		Fornecedores f3 = new Fornecedores();
-//		f3.setDescricao("Descriçao 3");
-//
-//		FornecedoresDAO dao = new FornecedoresDAO();
-//		try {
-//		
-//			dao.salvar(f3);
-//			System.out.println("Salvo com sucesso!");
-//		} catch (SQLException e) {
-//			System.out.println("Erro ao salvor");
-//			e.printStackTrace();
-//		}
+		Fornecedores f3 = new Fornecedores();
+		f3.setDescricao("Fornecedor 9 ");
+
+		FornecedoresDAO dao = new FornecedoresDAO();
+		try {
+		
+			dao.salvar(f3);
+			System.out.println("Salvo com sucesso!");
+		} catch (SQLException e) {
+			System.out.println("Erro ao salvor");
+			e.printStackTrace();
+		}
 
 		//excluir
 //		Fornecedores f1 = new Fornecedores();
@@ -196,20 +196,20 @@ public class FornecedoresDAO {
 //			e.printStackTrace();
 //		}
 		
-		Fornecedores f1 = new Fornecedores();
-		f1.setDescricao("te");
-		FornecedoresDAO dao = new FornecedoresDAO();
-		try {
-			
-				ArrayList<Fornecedores> lista = dao.buscarDescricao(f1);
-		
-				for(Fornecedores f : lista) {
-				System.out.println("lista:" + f);
-				}
-			
-			} catch (SQLException e) {
-				System.out.println("Erro ao pesquisar");
-				e.printStackTrace();
-			}
+//		Fornecedores f1 = new Fornecedores();
+//		f1.setDescricao("te");
+//		FornecedoresDAO dao = new FornecedoresDAO();
+//		try {
+//			
+//				ArrayList<Fornecedores> lista = dao.buscarDescricao(f1);
+//		
+//				for(Fornecedores f : lista) {
+//				System.out.println("lista:" + f);
+//				}
+//			
+//			} catch (SQLException e) {
+//				System.out.println("Erro ao pesquisar");
+//				e.printStackTrace();
+//			}
 }
 	}
