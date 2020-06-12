@@ -90,4 +90,25 @@ public class FornecedoresBean {
 			e.printStackTrace();
 		}
 	}
+	
+	public void prepararEditar() {
+		fornecedores = itens.getRowData();
+		
+	}
+	public void editar() {
+		
+		try {
+			FornecedoresDAO dao = new FornecedoresDAO();
+
+			dao.editar(fornecedores);
+			ArrayList<Fornecedores> lista = dao.listar();
+			itens = new ListDataModel<Fornecedores>(lista);
+            JSFUtil.adicionarMensagemSucesso("Fornecedor Alterado com Sucesso!");
+
+		} catch (SQLException e) {
+          JSFUtil.adicionarMensagemErro("Erro ao alterar fornecedor que tenha produtos associados");
+
+			e.printStackTrace();
+		}
+	}
 }
