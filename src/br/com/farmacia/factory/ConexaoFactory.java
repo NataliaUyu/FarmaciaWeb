@@ -11,6 +11,7 @@ public class ConexaoFactory {
 
 
  public static Connection conectar() throws SQLException {
+	DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 	 Connection conexao = DriverManager.getConnection(URL, USUARIO, SENHA);	 
 	return conexao;
  }
