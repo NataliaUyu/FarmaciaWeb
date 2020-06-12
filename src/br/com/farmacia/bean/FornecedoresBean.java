@@ -14,27 +14,55 @@ import br.com.farmacia.domain.Fornecedores;
 @ManagedBean(name = "MBFornecedores")
 @ViewScoped
 public class FornecedoresBean {
-private ListDataModel<Fornecedores> itens;
 
-public ListDataModel<Fornecedores> getItens() {
-	return itens;
-}
+	private  Fornecedores fornecedores;
+	private ListDataModel<Fornecedores> itens;
 
-public void setItens(ListDataModel<Fornecedores> itens) {
-	this.itens = itens;
-}
+	public ListDataModel<Fornecedores> getItens() {
+		return itens;
+	}
 
-@PostConstruct
-public void prepararPesquisa() {
-	
-	try {
-		FornecedoresDAO dao = new FornecedoresDAO();
-		ArrayList<Fornecedores> lista = dao.listar();
-		itens = new ListDataModel<Fornecedores>(lista);
-	} catch (SQLException e) {
-		
-		e.printStackTrace();
+	public void setItens(ListDataModel<Fornecedores> itens) {
+		this.itens = itens;
+	}
+
+	public Fornecedores getFornecedores() {
+		return fornecedores;
+	}
+
+	public void setFornecedores(Fornecedores fornecedores) {
+		this.fornecedores = fornecedores;
+	}
+
+	@PostConstruct
+	public void prepararPesquisa() {
+
+		try {
+			FornecedoresDAO dao = new FornecedoresDAO();
+			ArrayList<Fornecedores> lista = dao.listar();
+			itens = new ListDataModel<Fornecedores>(lista);
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
 	}
 	
-}
+	public void prepararNovo() {
+		fornecedores = new Fornecedores();
+	}
+	
+	public void novo() {
+		
+		try {
+			FornecedoresDAO dao = new FornecedoresDAO();
+
+			dao.salvar(fornecedores);
+			ArrayList<Fornecedores> lista = dao.listar();
+			itens = new ListDataModel<Fornecedores>(lista);
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		}
+	}
 }
