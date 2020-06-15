@@ -17,14 +17,25 @@ import br.com.farmacia.util.JSFUtil;
 public class FornecedoresBean {
 
 	private  Fornecedores fornecedores;
-	private ListDataModel<Fornecedores> itens;
-
-	public ListDataModel<Fornecedores> getItens() {
+	private ArrayList<Fornecedores> itens;
+	private ArrayList<Fornecedores> itensFiltrados;
+	
+	
+	
+	public ArrayList<Fornecedores> getItens() {
 		return itens;
 	}
 
-	public void setItens(ListDataModel<Fornecedores> itens) {
+	public void setItens(ArrayList<Fornecedores> itens) {
 		this.itens = itens;
+	}
+
+	public ArrayList<Fornecedores> getItensFiltrados() {
+		return itensFiltrados;
+	}
+
+	public void setItensFiltrados(ArrayList<Fornecedores> itensFiltrados) {
+		this.itensFiltrados = itensFiltrados;
 	}
 
 	public Fornecedores getFornecedores() {
@@ -40,8 +51,8 @@ public class FornecedoresBean {
 
 		try {
 			FornecedoresDAO dao = new FornecedoresDAO();
-			ArrayList<Fornecedores> lista = dao.listar();
-			itens = new ListDataModel<Fornecedores>(lista);
+			itens= dao.listar();
+			
 		} catch (SQLException e) {
                JSFUtil.adicionarMensagemErro("ex.getMessage()");
 			e.printStackTrace();
@@ -59,8 +70,8 @@ public class FornecedoresBean {
 			FornecedoresDAO dao = new FornecedoresDAO();
 
 			dao.salvar(fornecedores);
-			ArrayList<Fornecedores> lista = dao.listar();
-			itens = new ListDataModel<Fornecedores>(lista);
+			itens = dao.listar();
+		
             JSFUtil.adicionarMensagemSucesso("Fornecedor Salvo com Sucesso!");
 
 		} catch (SQLException e) {
@@ -70,18 +81,15 @@ public class FornecedoresBean {
 		}
 	}
 	
-	public void prepararExcluir() {
-		fornecedores = itens.getRowData();
-		
-	}
+	
 	public void excluir() {
 		
 		try {
 			FornecedoresDAO dao = new FornecedoresDAO();
 
 			dao.excluir(fornecedores);
-			ArrayList<Fornecedores> lista = dao.listar();
-			itens = new ListDataModel<Fornecedores>(lista);
+			itens = dao.listar();
+		
             JSFUtil.adicionarMensagemSucesso("Fornecedor Excluido com Sucesso!");
 
 		} catch (SQLException e) {
@@ -90,23 +98,19 @@ public class FornecedoresBean {
 			e.printStackTrace();
 		}
 	}
-	
-	public void prepararEditar() {
-		fornecedores = itens.getRowData();
-		
-	}
+
 	public void editar() {
 		
 		try {
 			FornecedoresDAO dao = new FornecedoresDAO();
 
 			dao.editar(fornecedores);
-			ArrayList<Fornecedores> lista = dao.listar();
-			itens = new ListDataModel<Fornecedores>(lista);
+			itens = dao.listar();
+
             JSFUtil.adicionarMensagemSucesso("Fornecedor Alterado com Sucesso!");
 
 		} catch (SQLException e) {
-          JSFUtil.adicionarMensagemErro("Erro ao alterar fornecedor que tenha produtos associados");
+          JSFUtil.adicionarMensagemErro("ex.getMessage()");
 
 			e.printStackTrace();
 		}
