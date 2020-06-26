@@ -14,6 +14,7 @@ import br.com.farmacia.domain.Produtos;
 
 
 
+
 public class ProdutoDAOTeste {
 @Ignore
 	public void salvar() throws SQLException {
@@ -43,24 +44,21 @@ public void excluir() throws SQLException {
 }
 	
 	@Ignore
-	public void listar() throws SQLException {
-		 ProdutoDAO dao = new ProdutoDAO();
-		 ArrayList<Produtos> lista = dao.listar();
+	public ArrayList<Produtos> buscarNome(String nome) {
+		ArrayList<Produtos> listaRetorno = new ArrayList<Produtos>();
+		ProdutoDAO dao = new ProdutoDAO();
 		
-		 for(Produtos p : lista) {
-			 System.out.println("codigo produto  " + p.getCodigo());
-			 System.out.println("nome produto  " + p.getDescricao());
-			 System.out.println("preco  " + p.getPreco());
-			 System.out.println("quantidade  " + p.getQuantidade());
-			 System.out.println("codigo fornecedor  " + p.getFornecedores().getCodigo());
-			 System.out.println("nome fornecedor  " + p.getFornecedores().getDescricao());
-			 
-			 
-		 }
+		try {
+			listaRetorno = dao.buscarNome(nome);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listaRetorno;
 	}
 	
+	
 	@Test
-	public void editar() throws SQLException {
+	public void editar()  {
 		Produtos p = new Produtos();
 		p.setCodigo(5);
 		p.setDescricao("Cataflan");
@@ -72,7 +70,12 @@ public void excluir() throws SQLException {
 		p.setFornecedores(f);
 		
 		ProdutoDAO dao = new ProdutoDAO();
-		dao.editar(p);
+		try {
+			dao.editar(p);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 

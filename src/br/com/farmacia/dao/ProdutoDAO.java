@@ -9,11 +9,15 @@ import java.util.ArrayList;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import br.com.farmacia.domain.Fornecedores;
 import br.com.farmacia.domain.Produtos;
 import br.com.farmacia.factory.ConexaoFactory;
 import br.com.farmacia.util.HibernateUtil;
+
+
+
 
 public class ProdutoDAO {
 	public void salvar(Produtos p) throws SQLException {
@@ -98,6 +102,19 @@ public class ProdutoDAO {
 		comando.setInt(5, p.getCodigo());
 		comando.executeUpdate();
 	}
+
+	
+	// Testando outro jeito de listar
+	 public ArrayList<Produtos> buscarTodos() throws Exception {
+
+	        ArrayList<Produtos> listaRetorno = new ArrayList<Produtos>();
+	        Session sessao = HibernateUtil.getSessionFactory().openSession();
+	        Criteria criteria = sessao.createCriteria(Produtos.class);
+	        criteria.addOrder(Order.asc("codigo"));
+	        listaRetorno = (ArrayList<Produtos>) criteria.list();
+	        sessao.close();
+	        return listaRetorno;
+	    }
 
 }
 
